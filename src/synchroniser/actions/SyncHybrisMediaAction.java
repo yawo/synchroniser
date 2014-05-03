@@ -9,8 +9,6 @@ package synchroniser.actions;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.model.FileHeader;
-import net.lingala.zip4j.model.UnzipParameters;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -19,12 +17,10 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 import synchroniser.Activator;
-import synchroniser.hanlders.db.RestoreDbHandler;
 import synchroniser.hanlders.scp.ScpHandler;
 import synchroniser.preferences.PreferenceConstants;
 
@@ -60,17 +56,17 @@ public class SyncHybrisMediaAction implements IWorkbenchWindowActionDelegate{
 		localPath = store.getString(PreferenceConstants.P_LOCAL_PATH_STRING);
 		String prefixMediaName = store.getString(PreferenceConstants.P_MEDIA_PREFIX_NAME_STRING);
 		boolean dumpCurrenDay=store.getDefaultBoolean(PreferenceConstants.P_DUMP_CURRENT_DAY_BOOLEAN);
-		final String dumpDay = store.getString(PreferenceConstants.P_DUMP_DAY);
-		final String fileName=prefixMediaName+"_"+dumpDay+".zip";
-		Job restoreJob=new Job("Synchronisation la base de donnés  du "+dumpDay) {
+		final String mediaZip = store.getString(PreferenceConstants.P_DUMP_DAY);
+		final String fileName=prefixMediaName+"_"+mediaZip+".zip";
+		Job restoreJob=new Job("Synchronisation la base de donnés  du "+mediaZip) {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 		        monitor.beginTask("", 2);
-		        monitor.subTask("Telechargement du data hybris de :  "+dumpDay);
+		        monitor.subTask("Telechargement du data hybris de :  "+mediaZip);
 		        scpHandler=new ScpHandler();
 				scpHandler.downloadFile(fileName);
 		        monitor.worked(1);
-		        monitor.subTask("Decompresser le data zip   "+dumpDay);
+		        monitor.subTask("Decompresser le data zip   "+mediaZip);
 		        unzip(localPath+"\\"+fileName, localPath);
 		        return Status.OK_STATUS;
 			}
