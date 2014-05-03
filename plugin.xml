@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.preferencePages"  
+         id="hybrisSynchroniserPreferences" 
+          >
+          
+      <page
+            name="Hybris Sychnroniser"
+            class="synchroniser.preferences.GeneralPreferencePage"
+            id="synchroniser.preferences.generalPreferencePage">
+      </page>      
+      
+      <page
+            name="Locale Preferences"
+            category="synchroniser.preferences.generalPreferencePage"
+            class="synchroniser.preferences.LocalPreferencePage"
+            id="synchroniser.preferences.LocalPreferencePage">
+      </page>
+      
+      <page
+            name="Remote Preferences"
+            category="synchroniser.preferences.generalPreferencePage"
+            class="synchroniser.preferences.RemotePreferencePage"
+            id="synchroniser.preferences.RemotePreferencePage">
+      </page>
+      
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="synchroniser.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.ui.IWorkingSet"
+            adaptable="true"
+            nameFilter="*"
+            id="net.sourceforge.pmd.eclipse.ui.syncWorkingSetContribution">    
+         <menu
+               id="sampleMenu"
+               label="Sample &amp;Menu">
+            <separator
+                  name="sampleGroup">
+            </separator>
+         </menu>
+         <action
+               class="synchroniser.actions.RestoreDbAction"
+               icon="icons/sample.gif"
+               id="synchroniser.actions.RestoreDbAction"
+               label="&amp;Sample Action"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Hello, Eclipse world">
+         </action>
+     </objectContribution>
+     
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true"
+            nameFilter="*"
+            id="net.sourceforge.pmd.eclipse.ui.syncProjectContribution">    
+         <menu
+               id="syncData"
+               label="Synchroise Local DataBase">
+            <separator
+                  name="syncData">
+            </separator>
+         </menu>
+         
+           <action
+               class="synchroniser.actions.SyncLocalEnvAction"
+               icon="icons/sample.gif"
+               id="synchroniser.actions.RestoreDbAction"
+               label="&amp;Synchronise Locale Envirornement"
+               menubarPath="syncData/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Synchronise Locale Environment">
+         </action>
+         
+         <action
+               class="synchroniser.actions.RestoreDbAction"
+               icon="icons/sample.gif"
+               id="synchroniser.actions.RestoreDbAction"
+               label="&amp;Synchronise Locale Database"
+               menubarPath="syncData/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Synchronise Locale Database">
+         </action>
+         
+          <action
+               class="synchroniser.actions.SyncHybrisMediaAction"
+               icon="icons/sample.gif"
+               id="synchroniser.actions.syncHybrisMediaAction"
+               label="&amp;Synchronise Hybris Data Media"
+               menubarPath="syncData/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Synchronise Hybris Data Media">
+         </action>
+     </objectContribution>
+     
+     
+   </extension>
+
+</plugin>
