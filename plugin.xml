@@ -50,7 +50,7 @@
          </menu>
          <action
                class="synchroniser.actions.RestoreDbAction"
-               icon="icons/sample.gif"
+               icon="icons/hybris.ico"
                id="synchroniser.actions.RestoreDbAction"
                label="&amp;Sample Action"
                menubarPath="sampleMenu/sampleGroup"
@@ -66,7 +66,8 @@
             id="net.sourceforge.pmd.eclipse.ui.syncProjectContribution">    
          <menu
                id="syncData"
-               label="Synchroise Local DataBase">
+               icon="icons/hybris.ico"
+               label="Local Hybris Synchronise">
             <separator
                   name="syncData">
             </separator>
@@ -74,32 +75,32 @@
          
            <action
                class="synchroniser.actions.SyncLocalEnvAction"
-               icon="icons/sample.gif"
+               icon="icons/hybris.ico"
                id="synchroniser.actions.RestoreDbAction"
-               label="&amp;Synchronise Locale Envirornement"
+               label="&amp;All (Database and Media)"
                menubarPath="syncData/sampleGroup"
                toolbarPath="sampleGroup"
-               tooltip="Synchronise Locale Environment">
+               tooltip="All (Database and Media)">
          </action>
          
          <action
                class="synchroniser.actions.RestoreDbAction"
-               icon="icons/sample.gif"
+               icon="icons/hybris.ico"
                id="synchroniser.actions.RestoreDbAction"
-               label="&amp;Synchronise Locale Database"
+               label="&amp;Database"
                menubarPath="syncData/sampleGroup"
                toolbarPath="sampleGroup"
-               tooltip="Synchronise Locale Database">
+               tooltip="Database">
          </action>
          
           <action
                class="synchroniser.actions.SyncHybrisMediaAction"
-               icon="icons/sample.gif"
+               icon="icons/hybris.ico"
                id="synchroniser.actions.syncHybrisMediaAction"
-               label="&amp;Synchronise Hybris Data Media"
+               label="&amp;Data and Media"
                menubarPath="syncData/sampleGroup"
                toolbarPath="sampleGroup"
-               tooltip="Synchronise Hybris Data Media">
+               tooltip="Data and Media">
          </action>
      </objectContribution>
      
