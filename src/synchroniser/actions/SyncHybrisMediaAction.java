@@ -1,3 +1,10 @@
+/*
+ * [SQLI] Plugin eclipse to synchronise local env with remote srv
+ * Copyright (c) 2014 SQLI
+ * All rights reserved.
+ * Author: Youssef El Jaoujat
+ * 
+ */
 package synchroniser.actions;
 
 import net.lingala.zip4j.core.ZipFile;

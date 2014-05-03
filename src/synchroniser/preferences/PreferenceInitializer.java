@@ -1,3 +1,10 @@
+/*
+ * [SQLI] Plugin eclipse to synchronise local env with remote srv
+ * Copyright (c) 2014 SQLI
+ * All rights reserved.
+ * Author: Youssef El Jaoujat
+ * 
+ */
 package synchroniser.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
