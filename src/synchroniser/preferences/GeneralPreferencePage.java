@@ -7,9 +7,11 @@
  */
 package synchroniser.preferences;
 
-import org.eclipse.jface.preference.*;
-import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import synchroniser.Activator;
 
@@ -61,8 +63,12 @@ public class GeneralPreferencePage
 				new StringFieldEditor(PreferenceConstants.P_DUMP_PREFIX_NAME_STRING, "Prefix du fichier dump de la base", getFieldEditorParent()));
 		addField(
 				new StringFieldEditor(PreferenceConstants.P_DUMP_DAY, "date du dump", getFieldEditorParent()));
+	
+		
 	}
 
+	
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */

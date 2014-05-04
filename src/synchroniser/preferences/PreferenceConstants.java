@@ -36,7 +36,11 @@ public class PreferenceConstants {
 	
 	public static final String  P_HOST_NAME_STRING="hostnamepreferences";
 	
+	public static final String  P_CONBO_HOST_NAME_STRING="combohostnamepreferences";
+	
 	public static final String  P_REMOTE_PATH="repotrepathpreferences";
+	
+	public static final String P_SERVER_CONFIG="pserverconfig";
 	
 	
 }

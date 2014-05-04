@@ -33,7 +33,7 @@ public class LocalPreferencePage
 	public LocalPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("A demonstration of a preference page implementation");
+		setDescription("Local paramters ");
 	}
 	
 	/**
@@ -51,13 +51,13 @@ public class LocalPreferencePage
 				"&Mysql installation Directory", getFieldEditorParent()));
 
 		addField(
-			new StringFieldEditor(PreferenceConstants.P_DB_NAME_STRING, "Nom de la base", getFieldEditorParent()));
+			new StringFieldEditor(PreferenceConstants.P_DB_NAME_STRING, "Database name", getFieldEditorParent()));
 		
 		addField(
-				new StringFieldEditor(PreferenceConstants.P_DB_USERNAME_STRING, "Nom d'utilisateur", getFieldEditorParent()));
+				new StringFieldEditor(PreferenceConstants.P_DB_USERNAME_STRING, "Username ", getFieldEditorParent()));
 		
 		addField(
-				new StringFieldEditor(PreferenceConstants.P_DB_PWD_STRING, "Mot de passe", getFieldEditorParent()));
+				new StringFieldEditor(PreferenceConstants.P_DB_PWD_STRING, "Password ", getFieldEditorParent()));
 		
 		
 	

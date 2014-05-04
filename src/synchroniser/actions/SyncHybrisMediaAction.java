@@ -7,6 +7,9 @@
  */
 package synchroniser.actions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
@@ -56,23 +59,23 @@ public class SyncHybrisMediaAction implements IWorkbenchWindowActionDelegate{
 		localPath = store.getString(PreferenceConstants.P_LOCAL_PATH_STRING);
 		String prefixMediaName = store.getString(PreferenceConstants.P_MEDIA_PREFIX_NAME_STRING);
 		boolean dumpCurrenDay=store.getDefaultBoolean(PreferenceConstants.P_DUMP_CURRENT_DAY_BOOLEAN);
-		final String mediaZip = store.getString(PreferenceConstants.P_DUMP_DAY);
-		final String fileName=prefixMediaName+"_"+mediaZip+".zip";
-		Job restoreJob=new Job("Synchronisation la base de donnés  du "+mediaZip) {
+		final String dumpDay =dumpCurrenDay?new SimpleDateFormat("YYYYMMdd").format(new Date()): store.getString(PreferenceConstants.P_DUMP_DAY);
+		final String fileName=prefixMediaName+"_"+dumpDay+".zip";
+		Job syncMedia=new Job("Synchronisation du dossier Media de la date "+dumpDay) {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 		        monitor.beginTask("", 2);
-		        monitor.subTask("Telechargement du data hybris de :  "+mediaZip);
+		        monitor.subTask("Telechargement du data hybris de :  "+dumpDay);
 		        scpHandler=new ScpHandler();
 				scpHandler.downloadFile(fileName);
 		        monitor.worked(1);
-		        monitor.subTask("Decompresser le data zip   "+mediaZip);
+		        monitor.subTask("Decompresser le data zip   "+dumpDay);
 		        unzip(localPath+"\\"+fileName, localPath);
 		        return Status.OK_STATUS;
 			}
 		};
-		restoreJob.setUser(true);
-		restoreJob.schedule();
+		syncMedia.setUser(true);
+		syncMedia.schedule();
 	}
 
 	

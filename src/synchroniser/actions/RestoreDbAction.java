@@ -7,6 +7,9 @@
  */
 package synchroniser.actions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -21,6 +24,7 @@ import synchroniser.Activator;
 import synchroniser.hanlders.db.RestoreDbHandler;
 import synchroniser.hanlders.scp.ScpHandler;
 import synchroniser.preferences.PreferenceConstants;
+import synchroniser.preferences.PreferenceInitializer;
 
 /**
  * Our sample action implements workbench action delegate.
@@ -49,9 +53,12 @@ public class RestoreDbAction implements IWorkbenchWindowActionDelegate{
 	public void run(IAction action) {
 		
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		String sv=store.getString(PreferenceConstants.P_SERVER_CONFIG);
+		String comb=store.getString(PreferenceConstants.P_CONBO_HOST_NAME_STRING);
+		String[][] str=PreferenceInitializer.parseString(sv);
 		String prefixDumpName = store.getString(PreferenceConstants.P_DUMP_PREFIX_NAME_STRING);
 		boolean dumpCurrenDay=store.getDefaultBoolean(PreferenceConstants.P_DUMP_CURRENT_DAY_BOOLEAN);
-		final String dumpDay = store.getString(PreferenceConstants.P_DUMP_DAY);
+		final String dumpDay =dumpCurrenDay?new SimpleDateFormat("YYYYMMdd").format(new Date()): store.getString(PreferenceConstants.P_DUMP_DAY);
 		final String fileName=prefixDumpName+"_"+dumpDay+".sql";
 		Job restoreJob=new Job("Synchronisation la base de donnés  du "+dumpDay) {
 			@Override

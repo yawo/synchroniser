@@ -7,9 +7,11 @@
  */
 package synchroniser.preferences;
 
-import org.eclipse.jface.preference.*;
-import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPreferencePage;
+
 import synchroniser.Activator;
 
 /**
@@ -33,7 +35,7 @@ public class RemotePreferencePage
 	public RemotePreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("A demonstration of a preference page implementation");
+		setDescription("Remote Server paramaters");
 	}
 	
 	/**
@@ -48,13 +50,13 @@ public class RemotePreferencePage
 				new StringFieldEditor(PreferenceConstants.P_HOST_NAME_STRING, "Host Name :", getFieldEditorParent()));
 		
 		addField(
-			new StringFieldEditor(PreferenceConstants.P_HOST_USER_NAME_STRING, "Usern Name :", getFieldEditorParent()));
+			new StringFieldEditor(PreferenceConstants.P_HOST_USER_NAME_STRING, "User Name :", getFieldEditorParent()));
 		
 		addField(
 				new StringFieldEditor(PreferenceConstants.P_HOST_PWD_STRING, "Password", getFieldEditorParent()));
 		
 		addField(
-				new StringFieldEditor(PreferenceConstants.P_REMOTE_PATH, "Backup Data Directory :", getFieldEditorParent()));
+				new StringFieldEditor(PreferenceConstants.P_REMOTE_PATH, "Depot directory :", getFieldEditorParent()));
 		
 	}
 
