@@ -8,9 +8,12 @@
 package synchroniser.hanlders.db;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import org.apache.tools.ant.util.StringUtils;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.custom.Bullet;
 
@@ -39,12 +42,12 @@ public class RestoreDbHandler {
 		dumpPrefixName = store
 				.getString(PreferenceConstants.P_DUMP_PREFIX_NAME_STRING);
 		dumpCurrenDay=store.getDefaultBoolean(PreferenceConstants.P_DUMP_CURRENT_DAY_BOOLEAN);
-		dumpDay = store.getString(PreferenceConstants.P_DUMP_DAY);
+        dumpDay =dumpCurrenDay?new SimpleDateFormat("YYYYMMdd").format(new Date()): store.getString(PreferenceConstants.P_DUMP_DAY);
 		mysqlInstallationDir=store.getString(PreferenceConstants.P_MYSQL_PATH);
 
 	}
 
-	public  void restoredbfromsql() {
+	public  String  restoredbfromsql() {
 		try {
 			/*
 			 * NOTE: String s is the mysql file name including the .sql in its
@@ -78,16 +81,16 @@ public class RestoreDbHandler {
 			 * values if not
 			 */
 			if (processComplete == 0) {
-				JOptionPane.showMessageDialog(null,
-						"Successfully restored from SQL : ");
+				return "SUCESS";
 			} else {
-				JOptionPane.showMessageDialog(null, "Error at restoring");
+				return "FAILURE";
 			}
 
 		} catch ( InterruptedException | IOException ex) {
 			JOptionPane.showMessageDialog(null, "Error at Restoredbfromsql"
 					+ ex.getMessage());
 		}
+		return null;
 
 	}
 

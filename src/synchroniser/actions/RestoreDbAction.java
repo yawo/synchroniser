@@ -53,31 +53,31 @@ public class RestoreDbAction implements IWorkbenchWindowActionDelegate{
 	public void run(IAction action) {
 		
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String sv=store.getString(PreferenceConstants.P_SERVER_CONFIG);
-		String comb=store.getString(PreferenceConstants.P_CONBO_HOST_NAME_STRING);
-		String[][] str=PreferenceInitializer.parseString(sv);
 		String prefixDumpName = store.getString(PreferenceConstants.P_DUMP_PREFIX_NAME_STRING);
 		boolean dumpCurrenDay=store.getDefaultBoolean(PreferenceConstants.P_DUMP_CURRENT_DAY_BOOLEAN);
 		final String dumpDay =dumpCurrenDay?new SimpleDateFormat("YYYYMMdd").format(new Date()): store.getString(PreferenceConstants.P_DUMP_DAY);
 		final String fileName=prefixDumpName+"_"+dumpDay+".sql";
-		Job restoreJob=new Job("Synchronisation la base de donnÃ©s  du "+dumpDay) {
+		Job restoreJob=new Job("Synchronisation la base de donnés  du "+dumpDay) {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 		        monitor.beginTask("", 2);
 		        
-		        monitor.subTask("Telecharger la base de donnÃ©s  du "+dumpDay);
+		        monitor.subTask("Telecharger la base de donnés  du "+dumpDay);
 		        scpHandler=new ScpHandler();
 				boolean isDownloadOk=scpHandler.downloadFile(fileName);
 				if(isDownloadOk){
 					monitor.worked(1);
 				}
 				
-		        monitor.subTask("Restaurer la base de donnÃ©s  du "+dumpDay);
+		        monitor.subTask("Restaurer la base de donnés  du "+dumpDay);
 		        restoreDbHandler=new RestoreDbHandler();
-		        restoreDbHandler.restoredbfromsql();
-		        
+		        String status= restoreDbHandler.restoredbfromsql();
 		        monitor.worked(1);
-		        return Status.OK_STATUS;
+		        if("SUCESS".equals(status)){
+		        	return Status.OK_STATUS;
+		        }else{
+		        	return Status.CANCEL_STATUS;
+		        }
 			}
 		};
 		restoreJob.setUser(true);
@@ -112,18 +112,5 @@ public class RestoreDbAction implements IWorkbenchWindowActionDelegate{
 		this.window = window;
 	}
 
-//	@Override
-//	public void run(IProgressMonitor monitor)
-//			throws InvocationTargetException, InterruptedException {
-//	
-//        monitor.beginTask("", 1);
-//        monitor.subTask("restoreDb");
-//        restoreDbHandler=new ScpHandler();
-//        restoreDbHandler.restoredbfromsql();
-//        monitor.worked(1);
-//        progressBar.setSelection(progressBar.getSelection() + 1);
-//       
-//	}
-	
 
 }
