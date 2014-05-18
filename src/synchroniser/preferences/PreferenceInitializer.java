@@ -7,12 +7,16 @@
  */
 package synchroniser.preferences;
 
+import impex.editors.ImpexDataDeffinition;
+
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.osgi.service.prefs.Preferences;
 
 import synchroniser.Activator;
 
@@ -23,6 +27,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
 	private static String LINE_SEPARATOR = "@@@@";
 	private static String FIELD_SEPARATOR = "####";
+	private ImpexDataDeffinition impexDataDeffinition;
 
 	/*
 	 * (non-Javadoc)
@@ -48,7 +53,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		      }
 		    }
 		  }); 
-
 	}
 
 	public static String createList(String[][] commands) {

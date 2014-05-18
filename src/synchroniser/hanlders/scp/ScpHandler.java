@@ -40,7 +40,6 @@ public class ScpHandler {
 		localPath = store.getString(PreferenceConstants.P_LOCAL_PATH_STRING);
 		tempDir = new File(localPath);
 		
-		
 		hostName=store.getString(PreferenceConstants.P_HOST_NAME_STRING);
 		hostUserName=store.getString(PreferenceConstants.P_HOST_USER_NAME_STRING);
 		hostPwd=store.getString(PreferenceConstants.P_HOST_PWD_STRING);

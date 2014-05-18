@@ -7,6 +7,7 @@
  */
 package synchroniser.actions;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

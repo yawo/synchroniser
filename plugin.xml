@@ -106,5 +106,16 @@
      
      
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="impex.editors.IMPEXEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="impex"
+            icon="icons/sample.gif"
+            id="impex.editors.IMPEXEditor"
+            name="Sample IMPEX  Editor">
+      </editor>
+   </extension>
 
 </plugin>

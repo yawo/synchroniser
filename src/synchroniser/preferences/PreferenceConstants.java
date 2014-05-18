@@ -43,4 +43,7 @@ public class PreferenceConstants {
 	public static final String P_SERVER_CONFIG="pserverconfig";
 	
 	
+	public static final String  P_IMPEX_DATA_DEF="impex_data_def";
+	
+	
 }
