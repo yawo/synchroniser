@@ -7,6 +7,9 @@ import java.util.Map;
 import org.eclipse.swt.graphics.RGB;
 
 public abstract class ImpexColorConstants {
+	
+	public static String TYPE_IMAGE_ID="hybris_type_image";
+	public static String KEYWORD_IMAGE_ID="hybris_keyword_image";
 	static RGB XML_COMMENT = new RGB(128, 0, 0);
 	static RGB PROC_INSTR = new RGB(128, 128, 128);
 	static RGB STRING = new RGB(0, 128, 0);
@@ -20,7 +23,7 @@ public abstract class ImpexColorConstants {
 	static RGB IMPEX_ATOMIC= new RGB(116,1,223);
 
 
-	 static final Map<String, String> IMPEX_KEYWORDS;
+	 public static final Map<String, String> IMPEX_KEYWORDS;
 	static {
 		Map<String, String> aMap = new HashMap<String, String>();
 		aMap.put("INSERT", "impex_cmd");

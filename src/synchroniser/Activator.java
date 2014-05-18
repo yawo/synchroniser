@@ -7,8 +7,19 @@
  */
 package synchroniser;
 
+import impex.editors.ImpexColorConstants;
+
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -65,4 +76,19 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
+	
+	protected void initializeImageRegistry(ImageRegistry registry) {
+		
+        Bundle bundle = Platform.getBundle(PLUGIN_ID);
+        IPath typ_path = new Path("icons/type.gif");
+        URL url_type = FileLocator.find(bundle, typ_path, null);
+        ImageDescriptor type_desc = ImageDescriptor.createFromURL(url_type);
+        registry.put(ImpexColorConstants.TYPE_IMAGE_ID, type_desc);
+        
+        IPath keyword_path = new Path("icons/keyword.png");
+        URL url_keyword = FileLocator.find(bundle, keyword_path, null);
+        ImageDescriptor keyword_desc = ImageDescriptor.createFromURL(url_keyword);
+        registry.put(ImpexColorConstants.KEYWORD_IMAGE_ID, keyword_desc);
+     }
+	
 }
